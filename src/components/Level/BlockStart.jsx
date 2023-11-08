@@ -8,7 +8,7 @@ const obstacleMaterial = new THREE.MeshStandardMaterial({ color: "orangered" });
 const wallMaterial = new THREE.MeshStandardMaterial({ color: "slategrey" });
 
 /**
- *
+ * BlockStart
  * @param {position}
  * @returns Floor mesh
  */
@@ -23,9 +23,7 @@ export default function BlockStart({ position = [0, 0, 0] }) {
         position={[0, -0.1, 0]}
         material={floor1Material}
         receiveShadow
-      >
-        <meshStandardMaterial color="limegreen" />
-      </mesh>
+      />
     </group>
   );
 }
