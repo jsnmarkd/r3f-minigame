@@ -17,15 +17,13 @@ const wallMaterial = new THREE.MeshStandardMaterial({ color: "slategrey" });
  */
 
 export default function BlockLimbo({ position = [0, 0, 0] }) {
-  const [speed] = useState(
-    () => (Math.random() + 0.2) * (Math.random() < 0.5 ? -1 : 1)
-  );
+  const [timeOffset] = useState(() => Math.random() * Math.PI * 2);
   const obstacle = useRef();
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
 
-    const y = Math.sin(time) + 1.15;
+    const y = Math.sin(time + timeOffset) + 1.15;
     obstacle.current.setNextKinematicTranslation({ x: 0, y: y, z: 0 });
   });
 
