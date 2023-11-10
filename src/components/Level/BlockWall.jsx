@@ -5,10 +5,8 @@ import { useFrame } from "@react-three/fiber";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
-const floor1Material = new THREE.MeshStandardMaterial({ color: "limegreen" });
-const floor2Material = new THREE.MeshStandardMaterial({ color: "greenyellow" });
+const floorMaterial = new THREE.MeshStandardMaterial({ color: "greenyellow" });
 const obstacleMaterial = new THREE.MeshStandardMaterial({ color: "orangered" });
-const wallMaterial = new THREE.MeshStandardMaterial({ color: "slategrey" });
 
 /**
  * BlockWall
@@ -38,7 +36,7 @@ export default function BlockWall({ position = [0, 0, 0] }) {
         geometry={boxGeometry}
         scale={[4, 0.2, 4]}
         position={[0, -0.1, 0]}
-        material={floor2Material}
+        material={floorMaterial}
         receiveShadow
       />
 
