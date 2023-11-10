@@ -42,7 +42,7 @@ export default function BlockWall({ position = [0, 0, 0] }) {
         receiveShadow
       />
 
-      {/* Limbo */}
+      {/* Wall */}
       <RigidBody
         ref={obstacle}
         type="kinematicPosition"
