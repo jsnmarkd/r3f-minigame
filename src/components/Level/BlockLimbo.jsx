@@ -12,7 +12,7 @@ const wallMaterial = new THREE.MeshStandardMaterial({ color: "slategrey" });
 
 /**
  * BlockLimbo
- * @param {position}
+ * @param {position} Position of the block
  * @returns Floor mesh and moving Limbo block
  */
 
@@ -24,7 +24,11 @@ export default function BlockLimbo({ position = [0, 0, 0] }) {
     const time = state.clock.getElapsedTime();
 
     const y = Math.sin(time + timeOffset) + 1.15;
-    obstacle.current.setNextKinematicTranslation({ x: position[0], y: position[1] + y, z: position[2] });
+    obstacle.current.setNextKinematicTranslation({
+      x: position[0],
+      y: position[1] + y,
+      z: position[2],
+    });
   });
 
   return (

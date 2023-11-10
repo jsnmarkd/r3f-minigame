@@ -3,6 +3,8 @@ import { RigidBody } from "@react-three/rapier";
 
 /**
  * Hamburger
+ * @param {scale} Scale of the hamburger
+ * @param {position} Position of the hamburger
  * @returns Hamburger mesh
  */
 export default function Hamburger({ scale, position }) {

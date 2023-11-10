@@ -5,11 +5,16 @@ import BlockWall from "./BlockWall";
 import BlockEnd from "./BlockEnd";
 import shuffle from "./shuffle";
 
+/**
+ * Level
+ * @param {count} Number of blocks to generate
+ * @param {types} Types of blocks to generate
+ * @returns the level that the player will play
+ */
 export default function Level({
   count = 5,
   types = [BlockWall, BlockLimbo, BlockSpinner],
 }) {
-
   return (
     <>
       <BlockStart position={[0, 0, 0]} />

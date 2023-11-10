@@ -6,7 +6,7 @@ const floorMaterial = new THREE.MeshStandardMaterial({ color: "limegreen" });
 
 /**
  * BlockStart
- * @param {position}
+ * @param {position} Position of the block
  * @returns Floor mesh
  */
 

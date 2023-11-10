@@ -1,5 +1,11 @@
 import { useMemo } from "react";
 
+/**
+ * Shuffle an array of types
+ * @param {*} count number of types to shuffle
+ * @param {*} typesArray array of types
+ * @returns an array of shuffled types
+ */
 export default function shuffle(count, typesArray) {
   return useMemo(() => {
     const shuffle = [];

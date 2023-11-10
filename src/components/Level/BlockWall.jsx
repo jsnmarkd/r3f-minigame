@@ -12,7 +12,7 @@ const wallMaterial = new THREE.MeshStandardMaterial({ color: "slategrey" });
 
 /**
  * BlockWall
- * @param {position}
+ * @param {position} Position of the block
  * @returns Floor mesh and moving Wall block
  */
 
