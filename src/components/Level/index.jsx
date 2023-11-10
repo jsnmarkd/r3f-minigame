@@ -5,6 +5,7 @@ import BlockWall from "./BlockWall";
 import BlockEnd from "./BlockEnd";
 import Bounds from "./Bounds";
 import shuffle from "./shuffle";
+import Player from "../Player";
 
 /**
  * Level
@@ -24,6 +25,7 @@ export default function Level({
       ))}
       <BlockEnd position={[0, 0, -(count + 1) * 4]} />
       <Bounds length={count + 2} />
+      <Player />
     </>
   );
 }
