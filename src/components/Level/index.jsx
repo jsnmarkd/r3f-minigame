@@ -14,7 +14,8 @@ import Player from "../Player";
  * @returns the level that the player will play
  */
 export default function Level({
-  count = 5,
+  // Number of blocks to generate
+  count = 10,
   types = [BlockWall, BlockLimbo, BlockSpinner],
 }) {
   return (

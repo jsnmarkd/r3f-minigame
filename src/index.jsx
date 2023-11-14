@@ -5,6 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
 import { Perf } from "r3f-perf";
 import { KeyboardControls } from "@react-three/drei";
+import Interface from "./components/Interface/index.jsx";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
@@ -32,5 +33,6 @@ root.render(
         <Perf openByDefault trackGPU={true} position={"bottom-left"} />
       </Canvas>
     </React.StrictMode>
+    <Interface />
   </KeyboardControls>
 );
