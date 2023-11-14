@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import { useKeyboardControls } from "@react-three/drei";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import * as THREE from "three";
 
@@ -16,6 +16,11 @@ import * as THREE from "three";
 
 export function PlayerPhysics({ body, world, rapier }) {
   const [subscribeKeys, getKeys] = useKeyboardControls();
+
+  const [smoothedCameraPosition] = useState(
+    () => new THREE.Vector3(10, 10, 10)
+  );
+  const [smoothedCameraTarget] = useState(() => new THREE.Vector3());
 
   /**
    * Function to handle player jumping
@@ -86,7 +91,7 @@ export function PlayerPhysics({ body, world, rapier }) {
 
     // Camera
     const bodyPosition = body.current.translation();
-  
+
     const cameraPosition = new THREE.Vector3();
     cameraPosition.copy(bodyPosition);
     cameraPosition.z += 2.25;
@@ -96,10 +101,12 @@ export function PlayerPhysics({ body, world, rapier }) {
     cameraTarget.copy(bodyPosition);
     cameraTarget.y += 0.25;
 
-    state.camera.position.copy(cameraPosition);
-    state.camera.lookAt(cameraTarget);
-  });
+    smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
+    smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
 
+    state.camera.position.copy(smoothedCameraPosition);
+    state.camera.lookAt(smoothedCameraTarget);
+  });
 
   return null;
 }
