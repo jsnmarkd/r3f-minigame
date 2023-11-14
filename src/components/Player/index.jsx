@@ -15,8 +15,8 @@ export default function Player() {
 
   return (
     <>
-      <PlayerPhysics body={body} world={world} rapier={rapier} />
       <PlayerModel body={body} />
+      <PlayerPhysics body={body} world={world} rapier={rapier} />
     </>
   );
 }

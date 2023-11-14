@@ -2,6 +2,8 @@ import { useFrame } from "@react-three/fiber";
 import { useKeyboardControls } from "@react-three/drei";
 import { useEffect } from "react";
 
+import * as THREE from "three";
+
 /**
  * PlayerPhysics Component
  * Handles the physics-related logic for the player, including jumping and movement.
@@ -15,7 +17,9 @@ import { useEffect } from "react";
 export function PlayerPhysics({ body, world, rapier }) {
   const [subscribeKeys, getKeys] = useKeyboardControls();
 
-  // Function to handle player jumping
+  /**
+   * Function to handle player jumping
+   */
   const jump = () => {
     const origin = body.current.translation();
     origin.y -= 0.31;
@@ -44,8 +48,11 @@ export function PlayerPhysics({ body, world, rapier }) {
     };
   }, []);
 
-  // Function to handle player movement
+  /**
+   * Function to handle player movement
+   */
   useFrame((state, delta) => {
+    // Controls
     const { forward, backward, leftward, rightward } = getKeys();
 
     const impulse = { x: 0, y: 0, z: 0 };
@@ -76,7 +83,23 @@ export function PlayerPhysics({ body, world, rapier }) {
 
     body.current.applyImpulse(impulse);
     body.current.applyTorqueImpulse(torque);
+
+    // Camera
+    const bodyPosition = body.current.translation();
+  
+    const cameraPosition = new THREE.Vector3();
+    cameraPosition.copy(bodyPosition);
+    cameraPosition.z += 2.25;
+    cameraPosition.y += 0.65;
+
+    const cameraTarget = new THREE.Vector3();
+    cameraTarget.copy(bodyPosition);
+    cameraTarget.y += 0.25;
+
+    state.camera.position.copy(cameraPosition);
+    state.camera.lookAt(cameraTarget);
   });
+
 
   return null;
 }

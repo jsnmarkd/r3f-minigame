@@ -13,7 +13,7 @@ export function PlayerModel({ body }) {
       ref={body}
       canSleep={false}
       colliders="ball"
-      position={[0, 1, 0]} // Corrected position syntax
+      position={[0, 1, 0]}
       restitution={0.2}
       friction={1}
       linearDamping={0.5}
