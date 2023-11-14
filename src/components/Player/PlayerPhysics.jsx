@@ -3,17 +3,19 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useEffect } from "react";
 
 /**
- * PlayerPhysics
- * @param {*} body 
- * @param {*} world 
- * @param {*} rapier 
- * @returns Player Movement and Jump mechanics
+ * PlayerPhysics Component
+ * Handles the physics-related logic for the player, including jumping and movement.
+ *
+ * @param {object} props - The properties passed to the component.
+ * @param {object} props.body - Reference to the player's rigid body.
+ * @param {object} props.world - The physics world from useRapier.
+ * @param {object} props.rapier - The rapier physics library.
  */
 
 export function PlayerPhysics({ body, world, rapier }) {
   const [subscribeKeys, getKeys] = useKeyboardControls();
 
-  // Jump logic
+  // Function to handle player jumping
   const jump = () => {
     const origin = body.current.translation();
     origin.y -= 0.31;
@@ -27,6 +29,7 @@ export function PlayerPhysics({ body, world, rapier }) {
     }
   };
 
+  // Subscribe to the jump key press and release events
   useEffect(() => {
     const unsubscribeJump = subscribeKeys(
       (state) => state.jump,
@@ -35,12 +38,13 @@ export function PlayerPhysics({ body, world, rapier }) {
       }
     );
 
+    // Unsubscribe from jump events when the component unmounts
     return () => {
       unsubscribeJump();
     };
   }, []);
 
-  // Movement logic
+  // Function to handle player movement
   useFrame((state, delta) => {
     const { forward, backward, leftward, rightward } = getKeys();
 
