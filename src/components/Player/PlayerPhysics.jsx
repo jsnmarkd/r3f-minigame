@@ -1,6 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useKeyboardControls } from "@react-three/drei";
 import { useEffect, useState } from "react";
+import useGame from "../../stores/useGame";
 
 import * as THREE from "three";
 
@@ -21,6 +22,11 @@ export function PlayerPhysics({ body, world, rapier }) {
     () => new THREE.Vector3(10, 10, 10)
   );
   const [smoothedCameraTarget] = useState(() => new THREE.Vector3());
+
+  const start = useGame((state) => state.start);
+  const end = useGame((state) => state.end);
+  const restart = useGame((state) => state.restart);
+  const blocksCount = useGame((state) => state.blocksCount);
 
   /**
    * Function to handle player jumping
@@ -47,9 +53,13 @@ export function PlayerPhysics({ body, world, rapier }) {
       }
     );
 
+    // Start the game when any key is pressed
+    const unsubscribeAny = subscribeKeys(() => start());
+
     // Unsubscribe from jump events when the component unmounts
     return () => {
       unsubscribeJump();
+      unsubscribeAny();
     };
   }, []);
 
@@ -57,7 +67,9 @@ export function PlayerPhysics({ body, world, rapier }) {
    * Function to handle player movement
    */
   useFrame((state, delta) => {
-    // Controls
+    /**
+     * Controls
+     */
     const { forward, backward, leftward, rightward } = getKeys();
 
     const impulse = { x: 0, y: 0, z: 0 };
@@ -89,7 +101,9 @@ export function PlayerPhysics({ body, world, rapier }) {
     body.current.applyImpulse(impulse);
     body.current.applyTorqueImpulse(torque);
 
-    // Camera
+    /**
+     * Camera
+     */
     const bodyPosition = body.current.translation();
 
     const cameraPosition = new THREE.Vector3();
@@ -106,6 +120,16 @@ export function PlayerPhysics({ body, world, rapier }) {
 
     state.camera.position.copy(smoothedCameraPosition);
     state.camera.lookAt(smoothedCameraTarget);
+
+    /**
+     * Phases
+     */
+
+    // End the game when the player reaches the end of the level
+    if (bodyPosition.z < -(blocksCount * 4 + 2)) end();
+
+    // Restart the game when the player falls off the level
+    if (bodyPosition.y < -4) restart();
   });
 
   return null;
