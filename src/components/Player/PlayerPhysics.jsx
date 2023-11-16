@@ -48,11 +48,14 @@ export function PlayerPhysics({ body, world, rapier }) {
    * Reset player position
    */
   const reset = () => {
-    console.log("reset");
+    body.current.setTranslation({ x: 0, y: 1, z: 0 });
+    body.current.setLinvel({ x: 0, y: 0, z: 0 });
+    body.current.setAngvel({ x: 0, y: 0, z: 0 });
   };
 
-  // Subscribe to the jump key press and release events
+  // Subscribe to the jump key, press and release events, and reset events
   useEffect(() => {
+    // Jump
     const unsubscribeJump = subscribeKeys(
       (state) => state.jump,
       (value) => {
@@ -60,9 +63,12 @@ export function PlayerPhysics({ body, world, rapier }) {
       }
     );
 
-    useGame.subscribe(
+    // Reset
+    const unsubscribeReset = useGame.subscribe(
       (state) => state.phase,
-      (value) => console.log("phase changes to", value)
+      (phase) => {
+        if(phase === "ready") reset()
+      }
     );
 
     // Start the game when any key is pressed
@@ -71,6 +77,7 @@ export function PlayerPhysics({ body, world, rapier }) {
     // Unsubscribe from jump events when the component unmounts
     return () => {
       unsubscribeJump();
+      unsubscribeReset();
       unsubscribeAny();
     };
   }, []);
