@@ -6,7 +6,7 @@ import { useMemo } from "react";
  * @param {*} typesArray array of types
  * @returns an array of shuffled types
  */
-export default function shuffle(count, typesArray) {
+export default function shuffle(count, typesArray, seed) {
   return useMemo(() => {
     const shuffle = [];
     for (let i = 0; i < count; i++) {
@@ -14,5 +14,5 @@ export default function shuffle(count, typesArray) {
       shuffle.push(type);
     }
     return shuffle;
-  }, [count, typesArray]);
+  }, [count, typesArray, seed]);
 }
