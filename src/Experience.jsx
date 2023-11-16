@@ -10,6 +10,8 @@ export default function Experience() {
 
   return (
     <>
+      <color attach="background" args={["#bdedfc"]} />
+      
       <Physics debug={false}>
         <Lights />
         <Level count={blocksCount} seed={blocksSeed} />
