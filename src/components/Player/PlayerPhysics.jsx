@@ -44,6 +44,13 @@ export function PlayerPhysics({ body, world, rapier }) {
     }
   };
 
+  /**
+   * Reset player position
+   */
+  const reset = () => {
+    console.log("reset");
+  };
+
   // Subscribe to the jump key press and release events
   useEffect(() => {
     const unsubscribeJump = subscribeKeys(
@@ -51,6 +58,11 @@ export function PlayerPhysics({ body, world, rapier }) {
       (value) => {
         if (value) jump();
       }
+    );
+
+    useGame.subscribe(
+      (state) => state.phase,
+      (value) => console.log("phase changes to", value)
     );
 
     // Start the game when any key is pressed
