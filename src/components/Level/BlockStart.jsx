@@ -18,6 +18,10 @@ export default function BlockStart({ position = [0, 0, 0] }) {
       <LevelText scale={0.5} position={[0.75, 0.65, 0]}>
         Marble Race
       </LevelText>
+      {/* Game Title */}
+      <LevelText scale={0.05} position={[0.75, 0.15, 0]}>
+        Try to make it under 5 seconds!
+      </LevelText>
       {/* Floor */}
       <mesh
         geometry={boxGeometry}

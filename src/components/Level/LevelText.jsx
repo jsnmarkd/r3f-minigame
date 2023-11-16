@@ -6,9 +6,9 @@ export default function LevelText({children, scale, position}) {
       <Text
         font="./bebas-neue-v9-latin-regular.woff"
         scale={scale}
-        maxWidth={0.25}
+        maxWidth={3}
         lineHeight={0.75}
-        textAlign="right"
+        textAlign="center"
         position={position}
         rotation-y={-0.25}
       >
