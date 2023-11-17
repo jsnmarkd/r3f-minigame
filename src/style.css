@@ -22,6 +22,32 @@ body,
   font-family: 'Bebas Neue', cursive;
 }
 
+
+
+/**
+ * Navbar
+ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  background: #00000033;
+  color: #ffffff;
+  font-size: 30px;
+  display: flex;
+  justify-content: space-between ;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbar .link {
+  color: #ffffff;
+  text-decoration: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 /**
  * Time
  */

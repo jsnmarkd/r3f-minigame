@@ -8,6 +8,11 @@ export default function Interface() {
 
   return (
     <div className="interface">
+      <div className="navbar">
+        <a href="https://github.com/jsnmarkd/r3f-minigame" target="_blank" className="link">
+          View Code
+        </a>
+      </div>
       {/* Timer */}
       <Timer />
 
