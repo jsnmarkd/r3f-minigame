@@ -6,12 +6,12 @@
 
 <h4 align="center">
   Built with 
-  <a href="https://reactjs.org/">React</a>, React Three Fiber and <a href="https://vitejs.dev/">Vite</a>.
+  <a href="https://reactjs.org/">React</a>, <a href="https://docs.pmnd.rs/react-three-fiber/getting-started/introduction">React Three Fiber</a> and <a href="https://vitejs.dev/">Vite</a>.
 </h4>
 
 <p align="center">
   • <a href="#deployed">Deployed</a> •
-  • <a href="#image">Images</a> •
+  <a href="#image">Images</a> •
   <a href="#setup">Setup</a> •
   <a href="#dependencies">Dependencies</a> •
 </p>
